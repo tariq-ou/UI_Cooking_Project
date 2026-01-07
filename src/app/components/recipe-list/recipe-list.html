@@ -1,0 +1,11 @@
+<p>recipe-list works!</p>
+
+<section class="recipe-list">
+  <h1 class="title">My Recipes</h1>
+  <div class="cards">
+    <div class="card" *ngFor="let recipe of recipes">
+      <img [src]="recipe.imageLoc" alt="{{ recipe.name }}" />
+      <h2>{{ recipe.name }}</h2>
+    </div>
+  </div>
+</section>
