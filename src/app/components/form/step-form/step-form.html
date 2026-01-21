@@ -1,0 +1,11 @@
+<div class="steps-section">
+  <label for="steps">Steps:</label>
+  <textarea
+    name="steps"
+    id="steps"
+    rows="8"
+    [(ngModel)]="steps"
+    (ngModelChange)="onTextareaChange($event)"
+    placeholder="Write each step on a new line...">
+  </textarea>
+</div>

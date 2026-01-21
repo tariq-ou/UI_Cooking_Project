@@ -1,0 +1,19 @@
+.steps-section {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.steps-section label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: bold;
+}
+
+.steps-section textarea {
+  width: 100%;
+  padding: 10px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  font-family: inherit;
+  resize: vertical;
+}

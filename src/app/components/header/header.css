@@ -1,0 +1,33 @@
+.header {
+  background-color: #FFB347; /* yellow-orange */
+  padding: 1rem 2rem;
+  border-radius: 0 0 20px 20px; /* curved bottom edges */
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); /* subtle shadow */
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.logo img {
+  height: 80px;
+  width: auto; /* maintains aspect ratio */
+  margin-right: 10px;
+}
+
+.nav a {
+  text-decoration: none;
+  color: white;
+  margin-left: 20px;
+  font-weight: bold;
+  transition: color 0.3s ease;
+}
+
+.nav a:hover {
+  color: #fff8dc; /* light cream hover */
+}

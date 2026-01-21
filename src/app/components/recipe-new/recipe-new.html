@@ -1,0 +1,42 @@
+<!--<form (ngSubmit)="onSubmit()" #recipeForm="ngForm">-->
+<!--  <h3>Recipe Name</h3>-->
+<!--  <input [(ngModel)]="recipe.name" name="name" required />-->
+<!--  <h3>Servings</h3>-->
+<!--  <input [(ngModel)]="recipe.servings" name="servings" type="number" required />-->
+
+<!--  <app-ingredient-form-->
+<!--    [ingredients]="recipe.ingredients"-->
+<!--    (ingredientsChange)="recipe.ingredients = $event">-->
+<!--  </app-ingredient-form>-->
+
+<!--  <app-steps-form-->
+<!--    [steps]="recipe.steps"-->
+<!--    (stepsChange)="recipe.steps = $event">-->
+<!--  </app-steps-form>-->
+
+<!--  <button type="submit">Save</button>-->
+<!--</form>-->
+
+<form (ngSubmit)="onSubmit()" #recipeForm="ngForm" class="recipe-form">
+  <div class="form-group">
+    <label for="name">Recipe Name</label>
+    <input id="name" [(ngModel)]="recipe.name" name="name" required />
+  </div>
+
+  <div class="form-group">
+    <label for="servings">Servings</label>
+    <input id="servings" [(ngModel)]="recipe.servings" name="servings" type="number" required />
+  </div>
+
+  <app-ingredient-form
+    [ingredients]="recipe.ingredients"
+    (ingredientsChange)="recipe.ingredients = $event">
+  </app-ingredient-form>
+
+  <app-steps-form
+    [steps]="recipe.steps"
+    (stepsChange)="recipe.steps = $event">
+  </app-steps-form>
+
+  <button type="submit" class="submit-btn">Save Recipe</button>
+</form>
