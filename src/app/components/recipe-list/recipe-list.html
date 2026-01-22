@@ -6,6 +6,7 @@
     <div class="card" *ngFor="let recipe of recipes">
       <img [src]="recipe.imageLoc" alt="{{ recipe.name }}" />
       <h2>{{ recipe.name }}</h2>
+      <a [routerLink]="['/recipes', recipe.id]">View Recipe</a>
     </div>
   </div>
 </section>

@@ -1,12 +1,3 @@
-<!--<div>-->
-<!--  <label>Ingredients</label>-->
-<!--  <div *ngFor="let ingredient of ingredients; let i = index">-->
-<!--    <input [(ngModel)]="ingredients[i]" name="ingredient{{i}}" />-->
-<!--    <button (click)="removeIngredient(i)" type="button">Remove</button>-->
-<!--  </div>-->
-<!--  <button (click)="addIngredient()" type="button">+ Add Ingredient</button>-->
-<!--</div>-->
-
 <h3>Ingredients</h3>
 <div *ngFor="let ingredient of ingredients; let i = index" class="ingredient-row">
   <input
