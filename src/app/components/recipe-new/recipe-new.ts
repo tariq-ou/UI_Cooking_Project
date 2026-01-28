@@ -3,6 +3,7 @@ import {FormBuilder, FormsModule, Validators} from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import {IngredientForm} from '../form/ingredient-form/ingredient-form';
 import {StepsForm} from '../form/step-form/step-form';
+import {Recipe} from '../../models/recipe.models';
 
 
 @Component({
@@ -14,11 +15,15 @@ import {StepsForm} from '../form/step-form/step-form';
 })
 export class RecipeNew {
 
-  recipe = {
+  //recipe: Recipe | null = null;
+
+  recipe: Recipe = {
+    id: 0,
     name: '',
     servings: 1,
-    ingredients: [{ name: '', amount: '', unit: '' }], // Must start with at least 1 item
-    steps: ''
+    ingredients: [],
+    steps: [],
+    imageLoc: ''
   };
 
   onSubmit() {

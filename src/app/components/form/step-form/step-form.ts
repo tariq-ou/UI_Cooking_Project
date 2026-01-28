@@ -12,15 +12,30 @@ import {FormsModule} from '@angular/forms';
 })
 
 export class StepsForm {
-  @Input() steps: string = '';
-  @Output() stepsChange = new EventEmitter<string>();
+  // @Input() steps: string[] = [];
+  // @Output() stepsChange = new EventEmitter<string>();
+  //
+  // onTextareaChange(value: string[]) {
+  //
+  //   this.stepsChange.emit(value);
+  // }
 
+  @Input() steps: string[] = [];
+  @Output() stepsChange = new EventEmitter<string[]>();
+
+  // Converts textarea string to array of trimmed non-empty steps
   onTextareaChange(value: string) {
-    //const updatedSteps = value.split('\n').map(step => step.trim()).filter(step => step);
-    this.stepsChange.emit(value);
+    const updatedSteps = value
+      .split('\n')
+      .map(step => step.trim())
+      .filter(step => step !== '');
+
+    this.stepsChange.emit(updatedSteps);
   }
 
-  // get stepsText(): string {
-  //   return this.steps.join('\n');
-  // }
+  // For displaying in the textarea
+  get stepsText(): string {
+    return this.steps.join('\n');
+  }
+
 }

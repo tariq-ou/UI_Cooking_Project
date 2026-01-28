@@ -1,0 +1,35 @@
+<!--<div class="recipe-detail">-->
+<!--  <h2>{{ recipe?.name }}</h2>-->
+<!--  <p><strong>Servings:</strong> {{ recipe?.servings }}</p>-->
+
+<!--  <h3>Ingredients</h3>-->
+<!--  <ul>-->
+<!--    <li *ngFor="let ing of recipe?.ingredients">-->
+<!--      {{ ing.amount }} {{ ing.unit }} {{ ing.name }}-->
+<!--    </li>-->
+<!--  </ul>-->
+
+<!--  <h3>Steps</h3>-->
+<!--  <p style="white-space: pre-line;">{{ recipe?.steps }}</p>-->
+<!--</div>-->
+
+<div class="recipe-detail" *ngIf="recipe">
+  <h2>{{ recipe.name }}</h2>
+  <p><strong>Servings:</strong> {{ recipe.servings }}</p>
+
+  <img *ngIf="recipe.imageLoc" [src]="recipe.imageLoc" alt="{{ recipe.name }}" class="recipe-image" />
+
+  <h3>Ingredients</h3>
+  <ul>
+    <li *ngFor="let ing of recipe.ingredients">
+      {{ ing.amount }} {{ ing.unit }} {{ ing.name }}
+    </li>
+  </ul>
+
+  <h3>Steps</h3>
+  <ol>
+    <li *ngFor="let step of recipe.steps">
+      {{ step }}
+    </li>
+  </ol>
+</div>
