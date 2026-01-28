@@ -1,12 +1,14 @@
 import { Component, inject } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import {ActivatedRoute, RouterLink} from '@angular/router';
 import {Recipe} from '../../models/recipe.models';
+import {CommonModule} from '@angular/common';
 
 @Component({
   selector: 'app-recipe-detail',
   templateUrl: './recipe-detail.html',
+  styleUrls: ['./recipe-detail.css'],
   standalone: true,
-  // imports: [...] if needed
+  imports: [CommonModule, RouterLink]
 })
 export class RecipeDetail {
   route = inject(ActivatedRoute);
