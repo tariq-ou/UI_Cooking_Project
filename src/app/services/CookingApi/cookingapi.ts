@@ -1,14 +1,14 @@
 // recipe.service.ts
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Recipe } from '../models/recipe.models';
+import { Recipe } from '../../models/recipe.models';
 import { Observable } from 'rxjs';
-import { IRecipeService } from './interface/recipe.service.interface';
+import { IRecipeService } from '../interface/recipe.service.interface';
 
 @Injectable({
   providedIn: 'root'
 })
-export class RecipeService implements IRecipeService {
+export class CookingApi implements IRecipeService {
   private apiUrl = 'http://localhost:3000/recipes';
 
   constructor(private http: HttpClient) {}
