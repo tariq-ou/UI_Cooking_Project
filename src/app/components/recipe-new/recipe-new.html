@@ -38,5 +38,15 @@
     (stepsChange)="recipe.steps = $event">
   </app-steps-form>
 
+  <div class="form-group">
+    <label for="image">Recipe Image</label>
+    <input id="image" type="file" (change)="onImageSelected($event)" />
+  </div>
+
+  <div *ngIf="recipe.imageLoc">
+    <p>Image Preview:</p>
+    <img [src]="recipe.imageLoc" alt="Preview" style="max-width: 200px;" />
+  </div>
+
   <button type="submit" class="submit-btn">Save Recipe</button>
 </form>
