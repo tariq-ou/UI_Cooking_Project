@@ -23,6 +23,7 @@ export const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'recipes', component: RecipeListComponent },
   { path: 'add-recipe', component: RecipeNew },
+  { path: 'edit-recipe/:id', component: RecipeNew },
   {
     path: 'recipes/:id',
     loadComponent: () =>

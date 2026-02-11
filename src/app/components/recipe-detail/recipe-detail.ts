@@ -11,29 +11,6 @@ import {CommonModule} from '@angular/common';
   imports: [CommonModule, RouterLink]
 })
 
-// export class RecipeDetail {
-//   route = inject(ActivatedRoute);
-//   recipeId: number | null = null;
-//
-//   ngOnInit() {
-//     this.recipeId = this.route.snapshot.paramMap.get('id');
-//     // Use this ID to fetch recipe details from API or local state
-//   }
-//
-//   recipe: Recipe = {
-//     id: this.recipeId,
-//     name: 'Spaghetti',
-//     servings: 2,
-//     ingredients: [
-//       { name: 'pasta', amount: 90, unit: 'grams' },
-//       { name: 'tomato', amount: 400, unit: 'ml' }
-//     ],
-//     steps: ['Boil water', 'Cook pasta'],
-//     imageLoc: 'assets/recipeImage/SpagBol.jpg'
-//   };
-// }
-
-
 export class RecipeDetail implements OnInit {
   route = inject(ActivatedRoute);
   recipe: Recipe | null = null;
@@ -65,6 +42,15 @@ export class RecipeDetail implements OnInit {
       };
     } else {
       this.recipe = null; // Optionally handle "not found" here
+    };
+
+  }
+
+  confirmDelete() {
+    const confirmDelete = window.confirm('Are you sure you want to delete this recipe?');
+    if (confirmDelete) {
+      alert('Recipe deleted! (simulated)');
+      window.history.back();
     }
   }
 }

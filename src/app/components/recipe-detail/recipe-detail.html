@@ -34,6 +34,15 @@
           </li>
         </ol>
       </div>
+
+      <div class="button-section">
+        <button class="edit-btn" [routerLink]="['/edit-recipe', recipe?.id]">✏️ Edit</button>
+      </div>
+
+      <div class="button-section">
+        <button (click)="confirmDelete()" class="delete-btn">🗑️ Delete Recipe</button>
+      </div>
+
     </div>
   </div>
 </div>
