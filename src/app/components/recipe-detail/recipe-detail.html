@@ -5,8 +5,8 @@
 
   <div class="recipe-flex">
     <img
-      *ngIf="recipe.imageLoc"
-      [src]="recipe.imageLoc"
+      *ngIf="recipe.imagePath"
+      [src]="recipe.imagePath"
       alt="{{ recipe.name }}"
       class="recipe-image"
     />

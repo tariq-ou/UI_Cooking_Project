@@ -29,7 +29,7 @@ export class RecipeDetail implements OnInit {
           { name: 'tomato', amount: 400, unit: 'ml' }
         ],
         steps: ['Boil water', 'Cook pasta'],
-        imageLoc: 'assets/recipeImage/SpagBol.jpg'
+        imagePath: 'assets/recipeImage/SpagBol.jpg'
       };
     } else if (id === 2) {
       this.recipe = {
@@ -38,7 +38,7 @@ export class RecipeDetail implements OnInit {
         servings: 2,
         ingredients: [],
         steps: ['Cook meat', 'Assemble'],
-        imageLoc: 'assets/recipeImage/Tacos.jpg'
+        imagePath: 'assets/recipeImage/Tacos.jpg'
       };
     } else {
       this.recipe = null; // Optionally handle "not found" here

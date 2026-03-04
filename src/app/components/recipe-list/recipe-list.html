@@ -1,12 +1,14 @@
 <p>recipe-list works!</p>
 
+<pre>{{ recipes$ | json }}</pre>
 <section class="recipe-list">
   <h1 class="title">My Recipes</h1>
   <div class="cards">
-    <div class="card" *ngFor="let recipe of recipes">
-      <img [src]="recipe.imageLoc" alt="{{ recipe.name }}" />
+    <div class="card" *ngFor="let recipe of recipes$  | async">
+      <img [src]="buildImageUrl(recipe.imagePath)" alt="{{ recipe.name }}" />
       <h2>{{ recipe.name }}</h2>
       <a [routerLink]="['/recipes', recipe.id]">View Recipe</a>
     </div>
   </div>
 </section>
+

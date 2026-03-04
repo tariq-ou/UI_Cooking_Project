@@ -4,11 +4,13 @@ export interface Ingredient {
   unit: string;
 }
 
-export interface Recipe {
-  id: number;
+export interface Recipe extends CreateRecipe {
+  id?: number;
+}
+export interface CreateRecipe {
   name: string;
   ingredients: Ingredient[];
   steps: string[];
-  imageLoc?: string;
-  servings: number; // optional if not always present
+  imagePath?: string;
+  servings: number;
 }
