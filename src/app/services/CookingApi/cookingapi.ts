@@ -23,27 +23,61 @@ export class CookingApi implements IRecipeService {
   }
 
   createRecipe(recipe: CreateRecipe, imageFile?: File): Observable<Recipe> {
+
     const formData = new FormData();
 
-    formData.append('name', recipe.name);
-    formData.append('servings', recipe.servings.toString());
+    formData.append('Name', recipe.name);
+    formData.append('Servings', recipe.servings.toString());
 
-    formData.append('ingredients', JSON.stringify(recipe.ingredients));
-    formData.append('steps', JSON.stringify(recipe.steps));
+    recipe.ingredients.forEach((ingredient, index) => {
+      formData.append(`Ingredients[${index}].Name`, ingredient.name);
+      formData.append(`Ingredients[${index}].Amount`, ingredient.amount.toString());
+      formData.append(`Ingredients[${index}].Unit`, ingredient.unit);
+    });
+
+    recipe.steps.forEach((step, index) => {
+      formData.append(`Steps[${index}]`, step);
+    });
 
     if (imageFile) {
-      formData.append('image', imageFile);
+      formData.append('imageFile', imageFile);
     }
 
-    return this.http.post<Recipe>(`${this.apiUrl}/addrecipe`, formData);
+    return this.http.post<Recipe>(
+      `${this.apiUrl}/addrecipe`,
+      formData
+    );
   }
 
-  updateRecipe(id: number, recipe: Recipe): Observable<Recipe> {
-    return this.http.put<Recipe>(`${this.apiUrl}/${id}`, recipe);
+  updateRecipe(id: number, recipe: CreateRecipe, imageFile?: File): Observable<Recipe> {
+
+    const formData = new FormData();
+
+    formData.append('Name', recipe.name);
+    formData.append('Servings', recipe.servings.toString());
+
+    recipe.ingredients.forEach((ingredient, index) => {
+      formData.append(`Ingredients[${index}].Name`, ingredient.name);
+      formData.append(`Ingredients[${index}].Amount`, ingredient.amount.toString());
+      formData.append(`Ingredients[${index}].Unit`, ingredient.unit);
+    });
+
+    recipe.steps.forEach((step, index) => {
+      formData.append(`Steps[${index}]`, step);
+    });
+
+    if (imageFile) {
+      formData.append('imageFile', imageFile);
+    }
+
+    return this.http.put<Recipe>(
+      `${this.apiUrl}/${id}`,
+      formData
+    );
   }
 
   deleteRecipe(id: number): Observable<void> {
-    return this.http.delete<void>(`${this.apiUrl}/${id}`);
+    return this.http.delete<void>(`${this.apiUrl}/${id}/deleteid`);
   }
 
   GetAllIngredientsRecipe(id: number): Observable<void> {

@@ -1,5 +1,6 @@
 import { Component, OnInit, inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
 import { IngredientForm } from '../form/ingredient-form/ingredient-form';
 import { StepsForm } from '../form/step-form/step-form';
@@ -10,18 +11,16 @@ import { IRecipeService } from '../../services/interface/recipe.service.interfac
 @Component({
   standalone: true,
   selector: 'app-recipe-new',
-  imports: [FormsModule, IngredientForm, StepsForm],
+  imports: [FormsModule, IngredientForm, StepsForm, CommonModule],
   templateUrl: './recipe-new.html',
   styleUrl: './recipe-new.css',
 })
 export class RecipeNew implements OnInit {
 
-  private recipeService: IRecipeService;
+
   private route = inject(ActivatedRoute);
 
-  constructor(private api: CookingApi) {
-    this.recipeService = api; // if you want to work through the interface
-  }
+  constructor(private recipeService: CookingApi) {}
 
   recipe: CreateRecipe = {
     name: '',
@@ -138,15 +137,29 @@ export class RecipeNew implements OnInit {
     //     error: err => console.error('Error saving recipe:', err)
     //   })
 
+    // if (this.editingId === null) {
+    //
+    //   this.recipeService.createRecipe(this.recipe)
+    //     .subscribe(() => alert('Created'));
+    //
+    // } else {
+    //
+    //   this.recipeService.updateRecipe(this.editingId, this.recipe)
+    //     .subscribe(() => alert('Updated'));
+    // }
+
     if (this.editingId === null) {
 
-      this.recipeService.createRecipe(this.recipe)
+      this.recipeService
+        .createRecipe(this.recipe, this.selectedFile ?? undefined)
         .subscribe(() => alert('Created'));
 
     } else {
 
-      this.recipeService.updateRecipe(this.editingId, this.recipe)
-        .subscribe(() => alert('Updated'));
+      // this.recipeService
+      //   .updateRecipe(this.editingId, this.recipe, this.selectedFile ?? undefined)
+      //   .subscribe(() => alert('Updated'));
+
     }
     }
 

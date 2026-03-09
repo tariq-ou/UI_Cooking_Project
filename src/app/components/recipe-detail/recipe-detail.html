@@ -1,18 +1,83 @@
-<div class="recipe-detail-container" *ngIf="recipe; else noRecipe">
-  <a class="back-link" routerLink="/recipes" routerLinkActive="active">
+<!--<div class="recipe-detail-container" *ngIf="recipe; else noRecipe">-->
+<!--  <a class="back-link" routerLink="/recipes" routerLinkActive="active">-->
+<!--    ← Back to Recipes-->
+<!--  </a>-->
+
+<!--  <div class="recipe-flex">-->
+<!--    <img-->
+<!--      *ngIf="recipe?.imagePath"-->
+<!--      [src]="buildImageUrl(recipe.imagePath)"-->
+<!--      [alt]="recipe.name"-->
+<!--      class="recipe-image"-->
+<!--    />-->
+
+<!--    <div class="recipe-content">-->
+<!--      <h2 class="recipe-title">{{ recipe.name }}</h2>-->
+<!--      <p class="recipe-subtitle">-->
+<!--        <strong>Servings:</strong> {{ recipe.servings }}-->
+<!--      </p>-->
+
+<!--      <div class="recipe-section">-->
+<!--        <h3>🧂 Ingredients</h3>-->
+<!--        <ul>-->
+<!--          <li *ngFor="let ing of recipe.ingredients">-->
+<!--            {{ ing.name }} – {{ ing.amount }} {{ ing.unit }}-->
+<!--          </li>-->
+<!--        </ul>-->
+<!--      </div>-->
+
+<!--      <div class="recipe-section">-->
+<!--        <h3>📋 Steps</h3>-->
+<!--        <ol>-->
+<!--          <li *ngFor="let step of recipe.steps">-->
+<!--            {{ step }}-->
+<!--          </li>-->
+<!--        </ol>-->
+<!--      </div>-->
+
+<!--      <div class="button-section">-->
+<!--        <button class="edit-btn" [routerLink]="['/edit-recipe', recipe?.id]">✏️ Edit</button>-->
+<!--      </div>-->
+
+<!--      <div class="button-section">-->
+<!--        <button (click)="confirmDelete()" class="delete-btn">🗑️ Delete Recipe</button>-->
+<!--      </div>-->
+
+<!--    </div>-->
+<!--  </div>-->
+<!--</div>-->
+
+<!--&lt;!&ndash; Fallback if recipe is null &ndash;&gt;-->
+<!--<ng-template #noRecipe>-->
+<!--  <div class="recipe-detail-container">-->
+<!--    <p>Recipe not found.</p>-->
+<!--  </div>-->
+<!--</ng-template>-->
+
+
+<!-- Loading state -->
+<div *ngIf="loading">
+  <p>Loading recipe...</p>
+</div>
+
+<!-- Recipe exists -->
+<div class="recipe-detail-container" *ngIf="!loading && recipe">
+
+  <a class="back-link" routerLink="/recipes">
     ← Back to Recipes
   </a>
 
   <div class="recipe-flex">
     <img
       *ngIf="recipe.imagePath"
-      [src]="recipe.imagePath"
-      alt="{{ recipe.name }}"
+      [src]="buildImageUrl(recipe.imagePath)"
+      [alt]="recipe.name"
       class="recipe-image"
     />
 
     <div class="recipe-content">
       <h2 class="recipe-title">{{ recipe.name }}</h2>
+
       <p class="recipe-subtitle">
         <strong>Servings:</strong> {{ recipe.servings }}
       </p>
@@ -36,22 +101,24 @@
       </div>
 
       <div class="button-section">
-        <button class="edit-btn" [routerLink]="['/edit-recipe', recipe?.id]">✏️ Edit</button>
+        <button class="edit-btn" [routerLink]="['/edit-recipe', recipe.id]">
+          ✏️ Edit
+        </button>
       </div>
 
       <div class="button-section">
-        <button (click)="confirmDelete()" class="delete-btn">🗑️ Delete Recipe</button>
+        <button (click)="confirmDelete()" class="delete-btn">
+          🗑️ Delete Recipe
+        </button>
       </div>
 
     </div>
   </div>
 </div>
 
-<!-- Fallback if recipe is null -->
-<ng-template #noRecipe>
-  <div class="recipe-detail-container">
-    <p>Recipe not found.</p>
-  </div>
-</ng-template>
+<!-- Recipe not found -->
+<div *ngIf="!loading && !recipe" class="recipe-detail-container">
+  <p>Recipe not found.</p>
+</div>
 
 
