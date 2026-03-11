@@ -7,6 +7,8 @@ import { StepsForm } from '../form/step-form/step-form';
 import {CreateRecipe, Recipe} from '../../models/recipe.models';
 import { CookingApi } from '../../services/CookingApi/cookingapi'; // your implementation
 import { IRecipeService } from '../../services/interface/recipe.service.interface';
+import { ChangeDetectorRef } from '@angular/core';
+import {buildImageUrl} from '../../utils/tools';
 
 @Component({
   standalone: true,
@@ -20,11 +22,13 @@ export class RecipeNew implements OnInit {
 
   private route = inject(ActivatedRoute);
 
-  constructor(private recipeService: CookingApi) {}
+  constructor(private recipeService: CookingApi,
+              private cdr: ChangeDetectorRef
+  ) {}
 
   recipe: CreateRecipe = {
     name: '',
-    servings: 1,
+    servings: 0,
     ingredients: [],
     steps: [],
     imagePath: ''
@@ -41,7 +45,20 @@ export class RecipeNew implements OnInit {
 
     this.recipeService.getRecipeById(this.editingId)
       .subscribe(recipe => {
-        this.recipe = recipe;
+        console.log("Recipe returned:", recipe);
+
+        this.recipe.name = recipe.name;
+        this.recipe.servings = recipe.servings;
+        this.recipe.ingredients = recipe.ingredients ?? [];
+        this.recipe.steps = recipe.steps ?? [];
+        this.recipe.imagePath = recipe.imagePath ?? '';
+
+        if (recipe.imagePath) {
+          this.previewUrl = buildImageUrl(recipe.imagePath);
+        }
+
+
+        this.cdr.detectChanges(); // force UI refresh
       });
 }
   // ⭐ Runs when page loads
@@ -156,9 +173,9 @@ export class RecipeNew implements OnInit {
 
     } else {
 
-      // this.recipeService
-      //   .updateRecipe(this.editingId, this.recipe, this.selectedFile ?? undefined)
-      //   .subscribe(() => alert('Updated'));
+      this.recipeService
+        .updateRecipe(this.editingId, this.recipe, this.selectedFile ?? undefined)
+        .subscribe(() => alert('Updated'));
 
     }
     }

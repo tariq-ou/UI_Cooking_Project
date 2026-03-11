@@ -71,7 +71,7 @@ export class CookingApi implements IRecipeService {
     }
 
     return this.http.put<Recipe>(
-      `${this.apiUrl}/${id}`,
+      `${this.apiUrl}/${id}/updaterecipe`,
       formData
     );
   }
