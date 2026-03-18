@@ -26,7 +26,7 @@ export class RecipeNew implements OnInit {
               private cdr: ChangeDetectorRef
   ) {}
 
-  recipe: CreateRecipe = {
+  recipeAdd: CreateRecipe = {
     name: '',
     servings: 0,
     ingredients: [],
@@ -45,16 +45,20 @@ export class RecipeNew implements OnInit {
 
     this.recipeService.getRecipeById(this.editingId)
       .subscribe(recipe => {
-        console.log("Recipe returned:", recipe);
+        console.log("Recipe returned:", recipe.name);
 
-        this.recipe.name = recipe.name;
-        this.recipe.servings = recipe.servings;
-        this.recipe.ingredients = recipe.ingredients ?? [];
-        this.recipe.steps = recipe.steps ?? [];
-        this.recipe.imagePath = recipe.imagePath ?? '';
+        this.recipeAdd.name = recipe.name;
+        this.recipeAdd.servings = recipe.servings;
+        this.recipeAdd.ingredients = recipe.ingredients ?? [];
+        this.recipeAdd.steps = recipe.steps ?? [];
+        this.recipeAdd.imagePath = recipe.imagePath ?? '';
 
-        if (recipe.imagePath) {
-          this.previewUrl = buildImageUrl(recipe.imagePath);
+        // if (recipe.imagePath) {
+        //   this.previewUrl = buildImageUrl(recipe.imagePath);
+        // }
+
+        if (this.recipeAdd.imagePath) {
+          this.previewUrl = buildImageUrl(this.recipeAdd.imagePath);
         }
 
 
@@ -121,9 +125,17 @@ export class RecipeNew implements OnInit {
 
     const reader = new FileReader();
     reader.onload = () => {
+      //this.previewUrlFile = reader.result
       this.previewUrl = reader.result as string;
     };
-    reader.readAsDataURL(this.selectedFile);
+    reader.readAsDataURL(this.selectedFile)
+    //reader.readAsDataURL(this.previewUrl);
+    // if (reader == null){
+    //   this.recipe.imagePath = this.previewUrl;
+    // }
+    // else{
+    //   this.recipe.imagePath = undefined;
+    // }
   }
   onSubmit() {
 
@@ -168,13 +180,13 @@ export class RecipeNew implements OnInit {
     if (this.editingId === null) {
 
       this.recipeService
-        .createRecipe(this.recipe, this.selectedFile ?? undefined)
+        .createRecipe(this.recipeAdd, this.selectedFile ?? undefined)
         .subscribe(() => alert('Created'));
 
     } else {
 
       this.recipeService
-        .updateRecipe(this.editingId, this.recipe, this.selectedFile ?? undefined)
+        .updateRecipe(this.editingId, this.recipeAdd, this.selectedFile ?? undefined)
         .subscribe(() => alert('Updated'));
 
     }

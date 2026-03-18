@@ -55,6 +55,9 @@ export class CookingApi implements IRecipeService {
 
     formData.append('Name', recipe.name);
     formData.append('Servings', recipe.servings.toString());
+    if (recipe.imagePath !== undefined) {
+      formData.append('imagePath', recipe.imagePath?.toString());
+    }
 
     recipe.ingredients.forEach((ingredient, index) => {
       formData.append(`Ingredients[${index}].Name`, ingredient.name);

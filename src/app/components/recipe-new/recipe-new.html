@@ -20,22 +20,22 @@
 <form (ngSubmit)="onSubmit()" #recipeForm="ngForm" class="recipe-form">
   <div class="form-group">
     <label for="name">Recipe Name</label>
-    <input id="name" [(ngModel)]="recipe.name" name="name" required />
+    <input id="name" [(ngModel)]="recipeAdd.name" name="name" required />
   </div>
 
   <div class="form-group">
     <label for="servings">Servings</label>
-    <input id="servings" [(ngModel)]="recipe.servings" name="servings" type="number" required />
+    <input id="servings" [(ngModel)]="recipeAdd.servings" name="servings" type="number" required />
   </div>
 
   <app-ingredient-form
-    [ingredients]="recipe.ingredients"
-    (ingredientsChange)="recipe.ingredients = $event">
+    [ingredients]="recipeAdd.ingredients"
+    (ingredientsChange)="recipeAdd.ingredients = $event">
   </app-ingredient-form>
 
   <app-steps-form
-    [steps]="recipe.steps"
-    (stepsChange)="recipe.steps = $event">
+    [steps]="recipeAdd.steps"
+    (stepsChange)="recipeAdd.steps = $event">
   </app-steps-form>
 
   <div class="form-group">
@@ -43,7 +43,7 @@
     <input id="image" type="file" (change)="onImageSelected($event)" />
   </div>
 
-  <div *ngIf="recipe.imagePath">
+  <div *ngIf="recipeAdd.imagePath">
     <p>Image Preview:</p>
 <!--    <img [src]="recipe.imagePath" alt="Preview" style="max-width: 200px;" />-->
     <img *ngIf="previewUrl" [src]="previewUrl" style="max-width: 200px;" />

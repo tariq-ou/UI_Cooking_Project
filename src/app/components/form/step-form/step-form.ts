@@ -11,31 +11,50 @@ import {FormsModule} from '@angular/forms';
   styleUrl: './step-form.css',
 })
 
+
 export class StepsForm {
-  // @Input() steps: string[] = [];
-  // @Output() stepsChange = new EventEmitter<string>();
-  //
-  // onTextareaChange(value: string[]) {
-  //
-  //   this.stepsChange.emit(value);
-  // }
 
-  @Input() steps: string[] = [];
-  @Output() stepsChange = new EventEmitter<string[]>();
+@Input() steps: string[] = [];
+@Output() stepsChange = new EventEmitter<string[]>();
 
-  // Converts textarea string to array of trimmed non-empty steps
-  onTextareaChange(value: string) {
-    const updatedSteps = value
-      .split('\n')
-      .map(step => step.trim())
-      .filter(step => step !== '');
-
-    this.stepsChange.emit(updatedSteps);
-  }
-
-  // For displaying in the textarea
-  get stepsText(): string {
-    return this.steps.join('\n');
-  }
-
+get stepsText(): string {
+  return this.steps.join('\n');
 }
+
+set stepsText(value: string) {
+  const updatedSteps = value
+    .split('\n')
+    .map(step => step.trim())
+    .filter(step => step !== '');
+
+  this.steps = updatedSteps;
+  this.stepsChange.emit(this.steps);
+}
+
+//   // @Input() steps: string[] = [];
+//   // @Output() stepsChange = new EventEmitter<string>();
+//   //
+//   // onTextareaChange(value: string[]) {
+//   //
+//   //   this.stepsChange.emit(value);
+//   // }
+//
+//   @Input() steps: string[] = [];
+//   @Output() stepsChange = new EventEmitter<string[]>();
+//
+//   // Converts textarea string to array of trimmed non-empty steps
+//   onTextareaChange(value: string) {
+//     const updatedSteps = value
+//       .split('\n')
+//       .map(step => step.trim())
+//       .filter(step => step !== '');
+//
+//     this.stepsChange.emit(updatedSteps);
+//   }
+//
+//   // For displaying in the textarea
+//   get stepsText(): string {
+//     return this.steps.join('\n');
+//   }
+//
+ }
