@@ -86,4 +86,11 @@ export class CookingApi implements IRecipeService {
   GetAllIngredientsRecipe(id: number): Observable<void> {
     return this.http.delete<void>(`${this.apiUrl}/${id}`);
   }
+  exportRecipes(): Observable<void> {
+    return this.http.post<void>(`${this.apiUrl}/export`, {});
+  }
+
+  importRecipes(): Observable<void> {
+    return this.http.post<void>(`${this.apiUrl}/import`, {});
+  }
 }
